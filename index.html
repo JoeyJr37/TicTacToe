@@ -10,18 +10,27 @@ header {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    grid-gap: 100px;
-    padding: 10px 40px 10px 40px;
+    
+    
     font-size: 100px;
     background: lightcoral;
     border: 1px solid black;
     text-align: center;
+    width: 100%;
 }
 
-main {
+.main-section {
     border: 2px solid purple;
     display: flex;
     justify-content: center;
+    height: 75vh;
+    width: 100%;
+}
+.board-section {
+    border: 2px solid blue;
+    width: 70vh;
+    height: 100%;
+    display: flex;
 }
 footer {
     background: lightgrey;
@@ -29,16 +38,38 @@ footer {
     justify-content: center;
     padding: 1em;
 }
+#grid-0, #grid-1, #grid-3, #grid-4 {
+    border-bottom: 4px solid black;
+    border-right: 4px solid black;
+}
+#grid-2, #grid-5 {
+    border-bottom: 4px solid black;
+}
+#grid-6, #grid-7 {
+    border-right: 4px solid black;
+}
 </style>
 <body>
 <header>
 <h1> Tic Tac Toe </h1>
 </header>
-<main>
+<main class="main-section">
+    <section class="board-section">
     <div class="gameBoard">
+        <div id= "grid-0"></div>
+        <div id= "grid-1"></div>
+        <div id= "grid-2"></div>
+
+        <div id= "grid-3"></div>
+        <div id= "grid-4"></div>
+        <div id= "grid-5"></div>
+
+        <div id= "grid-6"></div>
+        <div id= "grid-7"></div>
+        <div id= "grid-8"></div>
 
         </div>
-    
+    </section>
 </main>
 <footer>
 <button> Generate Game Board</button>
