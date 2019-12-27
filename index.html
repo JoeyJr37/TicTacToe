@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head><title> Tic Tac Toe </title> </head>
+<style>
+header {
+    background: grey;
+    padding: 2em;
+}
+.gameBoard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 100px;
+    padding: 10px 40px 10px 40px;
+    font-size: 100px;
+    background: lightcoral;
+    border: 1px solid black;
+    text-align: center;
+}
+
+main {
+    border: 2px solid purple;
+    display: flex;
+    justify-content: center;
+}
+footer {
+    background: lightgrey;
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+}
+</style>
+<body>
+<header>
+<h1> Tic Tac Toe </h1>
+</header>
+<main>
+    <div class="gameBoard">
+
+        </div>
+    
+</main>
+<footer>
+<button> Generate Game Board</button>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
