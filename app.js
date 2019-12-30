@@ -5,9 +5,11 @@ const gameBoard = (()=> {
 })();
 
 const displayCtrl = ((gameArray) => {
-    //1. generateBoard
     const UIboard = document.querySelector(".gameBoard");
-
+    const twoPlayersBtn = document.querySelector("#twoPlayersBtn");
+    const Player = (playerNumber, marker, activeStatus) => {
+        return {playerNumber, marker, activeStatus };
+    };
     const render = () => {
         let arrayLength = gameArray.length;
         for (let i = 0; i < arrayLength; i++){
@@ -16,29 +18,43 @@ const displayCtrl = ((gameArray) => {
         UIboard.append(gameMarker);
        };
     };
-    //2. listen for clicks
-    // const playerClick = document.querySelector(".gameBoard");
-    // playerClick.addEventListener("click", placeMarker);
+    const setActivePlayer = (one, two) => {
+        let activePlayer;
+        if (one.activeStatus === true){
+            activePlayer = one;
+            console.log("It's Player 1's turn");
+        } else if (two.activeStatus === true){
+            activePlayer = two;
+            console.log("It's Player 2's turn");
+        };
+    };
+    const twoPlayerMode = () => {
+        const playerTags = document.querySelectorAll(".player-tags");
+        const playerTagsArray = Object.values(playerTags);
+        playerTagsArray.forEach(item => item.style.display = "inline");
+        const playerOne = Player(1, "X", true);
+        const playerTwo = Player(2, "O", false);
+        setActivePlayer(playerOne, playerTwo);
+        return {playerOne, playerTwo}
+    };
     //3. generate marker on game board from array
     const placeMarker = (event) => {
-        let gameSpot = event.target;
-        gameSpot.textContent = "X";
+        let gameSpot = event.target.id;
+        // put X or O in game array from click based on active player
+        // gameArray [grid-spot] = activePlayer.marker
+        console.log(gameSpot);
     };
-    return {render, placeMarker};
+    return {render, placeMarker, twoPlayerMode};
 })(gameBoard.internalGameBoard);
 
-const Player = (playerNumber, marker, score) => {
-    return {playerNumber, marker, score};
-};
+
+
 const gameFlow = ((UIctrl, boardCtrl) => {
-  // 1. generateBoard
-  // const gamingTable = boardCtrl.internalGameBoard;
-  UIctrl.render();
+    // 1. generateBoard
+    UIctrl.render();
     // 2. generatePlayers
-    const playerOne = Player(1, "X", 0);
-    const playerTwo = Player(2, "O", 0);
+    twoPlayersBtn.addEventListener("click", UIctrl.twoPlayerMode);
     // 3. setActivePlayer
-    
     // 4. listenForClicks
     const playerClick = document.querySelector(".gameBoard");
     playerClick.addEventListener("click", UIctrl.placeMarker);
