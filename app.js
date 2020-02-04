@@ -27,6 +27,7 @@ const displayCtrl = ((gameArray) => {
             activePlayer = two;
             console.log("It's Player 2's turn");
         };
+        return activePlayer;
     };
     const twoPlayerMode = () => {
         const playerTags = document.querySelectorAll(".player-tags");
@@ -40,9 +41,12 @@ const displayCtrl = ((gameArray) => {
     //3. generate marker on game board from array
     const placeMarker = (event) => {
         let gameSpot = event.target.id;
+        let gameSpotArray = Array.from(gameSpot);
+        let gameSpotID = Number(gameSpotArray[5]) + 1;
+        gameArray[gameSpotID] = activePlayer.marker;
         // put X or O in game array from click based on active player
         // gameArray [grid-spot] = activePlayer.marker
-        console.log(gameSpot);
+        console.log(gameSpotID);
     };
     return {render, placeMarker, twoPlayerMode};
 })(gameBoard.internalGameBoard);
@@ -51,7 +55,7 @@ const displayCtrl = ((gameArray) => {
 
 const gameFlow = ((UIctrl, boardCtrl) => {
     // 1. generateBoard
-    UIctrl.render();
+    // UIctrl.render();
     // 2. generatePlayers
     twoPlayersBtn.addEventListener("click", UIctrl.twoPlayerMode);
     // 3. setActivePlayer
@@ -59,6 +63,7 @@ const gameFlow = ((UIctrl, boardCtrl) => {
     const playerClick = document.querySelector(".gameBoard");
     playerClick.addEventListener("click", UIctrl.placeMarker);
     // 5. Fill array with marker from active player
+    // boardCtrl.internalGameBoard[i].textContent = activePlayer.marker;
     // 6. generate marker on game board from array [render]
     // 7. check for winner (if no winner and no tie; go back to step 3)
 })(displayCtrl, gameBoard);
